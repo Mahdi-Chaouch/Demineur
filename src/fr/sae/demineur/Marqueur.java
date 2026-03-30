@@ -1,24 +1,24 @@
 package fr.sae.demineur;
 
-/**
- * Représente les marqueurs qu'un joueur peut poser sur une case cachée.
- * <ul>
- *   <li>{@link #VIDE} : aucun marqueur</li>
- *   <li>{@link #MINE} : le joueur est certain que la case est minée (★)</li>
- *   <li>{@link #SUSPECT} : le joueur a un simple soupçon (?)</li>
- * </ul>
- *
- * @author Votre Nom
- * @version 1.0
- */
-public enum Marqueur {
+public final class Marqueur {
+    public static final Marqueur VIDE = new Marqueur("VIDE");
+    public static final Marqueur MINE = new Marqueur("MINE");
+    public static final Marqueur SUSPECT = new Marqueur("SUSPECT");
 
-    /** Aucun marqueur posé sur la case. */
-    VIDE,
+    private final String nom;
 
-    /** Marqueur ★ : le joueur est certain que la case est minée. */
-    MINE,
+    private Marqueur(String nom) {
+        this.nom = nom;
+    }
 
-    /** Marqueur ? : le joueur soupçonne une mine. */
-    SUSPECT
+    public static Marqueur fromString(String texte) {
+        if ("MINE".equals(texte)) return MINE;
+        if ("SUSPECT".equals(texte)) return SUSPECT;
+        return VIDE;
+    }
+
+    @Override
+    public String toString() {
+        return nom;
+    }
 }
