@@ -1,9 +1,9 @@
 #
-# Configuration adaptée au projet Démineur en Java.
-# Les fichiers compilés et de build sont ignorés, ainsi que les fichiers
-# de sauvegarde générés à l'exécution.
+# Configuration adaptee au projet Demineur en Java.
+# Les fichiers compiles et de build sont ignores, ainsi que les fichiers
+# de sauvegarde generes a l'execution.
 
-# Fichiers compilés Java
+# Fichiers compiles Java
 *.class
 
 # Dossiers de build / sortie
@@ -11,8 +11,8 @@ out/
 bin/
 build/
 
-# Classes anonymes générées automatiquement par le compilateur (déjà couvertes par *.class,
-# mais conservé pour clarté)
+# Classes anonymes generees automatiquement par le compilateur (deja couvertes par *.class,
+# mais conserve pour clarte)
 *$*.class
 
 # Fichiers temporaires et de sauvegarde du jeu
@@ -83,4 +83,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-

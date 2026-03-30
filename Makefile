@@ -1,4 +1,4 @@
-# Makefile pour le Démineur
+# Makefile pour le Demineur
 
 # Compilateur Java
 JAVAC = javac
@@ -15,7 +15,7 @@ SOURCES = Case.java Marqueur.java EtatPartie.java Plateau.java Partie.java \
 
 CLASSES = $(SOURCES:.java=.class)
 
-# Dépendances des fichiers
+# Dependances des fichiers
 Case.class: Case.java Marqueur.class
 	$(JAVAC) $(JAVAC_FLAGS) Case.java
 
@@ -64,9 +64,9 @@ LanceurGraphique.class: LanceurGraphique.java FenetrePrincipale.class
 
 .PHONY: all run console clean
 
-# Cible par défaut
+# Cible par defaut
 all: $(CLASSES)
-	@echo "Compilation réussie!"
+	@echo "Compilation reussie!"
 
 # Lancer la version graphique
 run: all
@@ -76,10 +76,10 @@ run: all
 console: all
 	$(JAVA) LanceurConsole
 
-# Nettoyer les fichiers compilés
+# Nettoyer les fichiers compiles
 clean:
 	rm -f *.class sauvegarde.txt
-	@echo "Nettoyage effectué."
+	@echo "Nettoyage effectue."
 
 # Aide
 help:
@@ -87,5 +87,6 @@ help:
 	@echo "  make        : Compile le projet"
 	@echo "  make run    : Lance la version graphique (GUI)"
 	@echo "  make console: Lance la version console"
-	@echo "  make clean  : Supprime les fichiers compilés"
+	@echo "  make clean  : Supprime les fichiers compiles"
 	@echo "  make help   : Affiche cette aide"
+
