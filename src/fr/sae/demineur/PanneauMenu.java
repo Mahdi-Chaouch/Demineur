@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -41,3 +43,4 @@ public class PanneauMenu extends JPanel {
         add(boutonQuitter);
     }
 }
+

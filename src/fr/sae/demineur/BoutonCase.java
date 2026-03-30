@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import javax.swing.*;
 import java.awt.*;
 

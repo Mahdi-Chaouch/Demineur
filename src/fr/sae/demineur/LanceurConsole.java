@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import java.util.Scanner;
 
 /**
@@ -48,3 +50,4 @@ public class LanceurConsole {
         scanner.close();
     }
 }
+

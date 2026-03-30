@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import java.util.Random;
 
 /**
@@ -310,3 +312,4 @@ public class Plateau {
         return sb.toString();
     }
 }
+

@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -25,6 +27,8 @@ public class Sauvegarde {
 
     /** Nom du fichier de sauvegarde par defaut. */
     private static final String FICHIER = "sauvegarde.txt";
+    /** Nom du fichier contenant le meilleur score (meilleur temps). */
+    private static final String FICHIER_SCORE = "meilleur_score.txt";
 
     /**
      * Sauvegarde l'etat complet d'une partie dans le fichier de sauvegarde.
@@ -134,5 +138,40 @@ public class Sauvegarde {
      */
     public static void supprimerSauvegarde() {
         new java.io.File(FICHIER).delete();
+    }
+
+    /**
+     * Lit le meilleur temps en secondes enregistre sur le disque.
+     *
+     * @return le meilleur temps, ou -1 si aucun n'est enregistre ou en cas d'erreur
+     */
+    public static int lireMeilleurScore() {
+        java.io.File fichier = new java.io.File(FICHIER_SCORE);
+        if (!fichier.exists()) {
+            return -1;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(FICHIER_SCORE))) {
+            String ligne = reader.readLine();
+            if (ligne == null) {
+                return -1;
+            }
+            return Integer.parseInt(ligne.trim());
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    /**
+     * Enregistre un nouveau meilleur temps sur le disque.
+     *
+     * @param temps le temps en secondes a enregistrer
+     */
+    public static void enregistrerMeilleurScore(int temps) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FICHIER_SCORE))) {
+            writer.write(String.valueOf(temps));
+        } catch (IOException e) {
+            // En cas d'erreur d'ecriture, on ignore simplement.
+        }
     }
 }

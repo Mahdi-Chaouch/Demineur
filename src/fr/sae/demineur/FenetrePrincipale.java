@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -66,9 +68,10 @@ public class FenetrePrincipale extends JFrame {
      * Affiche la fin de partie.
      *
      * @param partie la partie terminée
+     * @param temps  le temps écoulé en secondes
      */
-    public void afficherFinPartie(Partie partie) {
-        afficherPanneau(new PanneauFin(this, partie));
+    public void afficherFinPartie(Partie partie, int temps) {
+        afficherPanneau(new PanneauFin(this, partie, temps));
     }
 
     /**
@@ -80,3 +83,4 @@ public class FenetrePrincipale extends JFrame {
         }
     }
 }
+

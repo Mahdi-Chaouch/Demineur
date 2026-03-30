@@ -1,12 +1,23 @@
+#
+# Configuration adaptée au projet Démineur en Java.
+# Les fichiers compilés et de build sont ignorés, ainsi que les fichiers
+# de sauvegarde générés à l'exécution.
 
-# IMPORTANT: .class files are VERSION CONTROLLED in this project
-# Do NOT add *.class to this .gitignore (they are needed for deployment)
+# Fichiers compilés Java
+*.class
 
-# Classes anonymes générées automatiquement par le compilateur
+# Dossiers de build / sortie
+out/
+bin/
+build/
+
+# Classes anonymes générées automatiquement par le compilateur (déjà couvertes par *.class,
+# mais conservé pour clarté)
 *$*.class
 
 # Fichiers temporaires et de sauvegarde du jeu
 sauvegarde.txt
+meilleur_score.txt
 
 # Logs
 *.log

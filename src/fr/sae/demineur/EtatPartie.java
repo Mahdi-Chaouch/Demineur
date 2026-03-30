@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 /**
  * Etat global d'une partie de Demineur.
  */

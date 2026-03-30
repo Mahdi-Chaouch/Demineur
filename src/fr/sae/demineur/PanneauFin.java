@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,9 +16,10 @@ public class PanneauFin extends JPanel {
      * Construit le panneau de fin.
      *
      * @param fenetre la fenêtre principale
-     * @param partie la partie terminée
+     * @param partie  la partie terminée
+     * @param temps   le temps écoulé en secondes
      */
-    public PanneauFin(FenetrePrincipale fenetre, Partie partie) {
+    public PanneauFin(FenetrePrincipale fenetre, Partie partie, int temps) {
         setLayout(new BorderLayout(5, 5));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -42,7 +45,40 @@ public class PanneauFin extends JPanel {
             }
         }
 
-        add(panneauGrille, BorderLayout.CENTER);
+        // Panneau central : infos de temps / score + grille
+        JPanel panneauCentre = new JPanel(new BorderLayout(5, 5));
+
+        JLabel lblTemps = new JLabel("Temps : " + temps + "s", JLabel.CENTER);
+
+        int meilleur = Sauvegarde.lireMeilleurScore();
+        String texteScore;
+
+        if (partie.getEtat() == EtatPartie.GAGNEE) {
+            if (meilleur == -1 || temps < meilleur) {
+                Sauvegarde.enregistrerMeilleurScore(temps);
+                meilleur = temps;
+                texteScore = "Nouveau meilleur temps : " + meilleur + "s";
+            } else {
+                texteScore = "Meilleur temps : " + meilleur + "s";
+            }
+        } else {
+            if (meilleur == -1) {
+                texteScore = "Aucun meilleur temps enregistré.";
+            } else {
+                texteScore = "Meilleur temps : " + meilleur + "s";
+            }
+        }
+
+        JLabel lblScore = new JLabel(texteScore, JLabel.CENTER);
+
+        JPanel panneauInfos = new JPanel(new GridLayout(2, 1, 0, 2));
+        panneauInfos.add(lblTemps);
+        panneauInfos.add(lblScore);
+
+        panneauCentre.add(panneauInfos, BorderLayout.NORTH);
+        panneauCentre.add(panneauGrille, BorderLayout.CENTER);
+
+        add(panneauCentre, BorderLayout.CENTER);
 
         // Bouton retour
         JButton btnRetour = new JButton("Retour menu");

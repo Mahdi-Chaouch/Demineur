@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 /**
  * Gere l'etat d'une partie et les actions du joueur.
  */
@@ -80,3 +82,4 @@ public class Partie {
         this.etat = etat;
     }
 }
+

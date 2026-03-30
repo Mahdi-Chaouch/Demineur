@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 /**
  * Représente une case de la grille du Démineur.
  * Une case peut être cachée ou révélée, minée ou non,
@@ -113,3 +115,4 @@ public class Case {
         this.minesAdjacentes = minesAdjacentes;
     }
 }
+

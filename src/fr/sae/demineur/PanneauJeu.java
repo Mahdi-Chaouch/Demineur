@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -65,7 +67,7 @@ public class PanneauJeu extends JPanel {
 
                         if (partie.getEtat() != EtatPartie.EN_COURS) {
                             arreterChrono();
-                            fenetre.afficherFinPartie(partie);
+                            fenetre.afficherFinPartie(partie, secondes);
                         } else {
                             rafraichir();
                         }
@@ -144,3 +146,4 @@ public class PanneauJeu extends JPanel {
         repaint();
     }
 }
+

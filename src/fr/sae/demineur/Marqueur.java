@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 /**
  * Représente les marqueurs qu'un joueur peut poser sur une case cachée.
  * <ul>

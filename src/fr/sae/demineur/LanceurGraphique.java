@@ -1,3 +1,5 @@
+package fr.sae.demineur;
+
 import javax.swing.*;
 
 /**
@@ -25,3 +27,4 @@ public class LanceurGraphique {
         });
     }
 }
+
