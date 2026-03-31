@@ -1,4 +1,4 @@
-package fr.sae.demineur;
+package demineur;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -1,4 +1,4 @@
-package fr.sae.demineur;
+package demineur;
 
 public class Case {
     private boolean estMinee;

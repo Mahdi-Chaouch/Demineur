@@ -1,4 +1,4 @@
-package fr.sae.demineur;
+package demineur;
 
 public final class Marqueur {
     public static final Marqueur VIDE = new Marqueur("VIDE");

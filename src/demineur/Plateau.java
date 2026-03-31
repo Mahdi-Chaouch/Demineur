@@ -1,10 +1,7 @@
-package fr.sae.demineur;
+package demineur;
 
 import java.util.Random;
 
-/**
- * Modele principal de la grille de Demineur.
- */
 public class Plateau {
     private final int largeur;
     private final int hauteur;
@@ -12,14 +9,7 @@ public class Plateau {
     private final Case[][] cases;
     private int nbCasesRevelees;
 
-    /**
-     * Construit un plateau, place les mines, puis calcule les adjacences.
-     *
-     * @param largeur largeur de la grille
-     * @param hauteur hauteur de la grille
-     * @param nbMines nombre total de mines
-     */
-    public Plateau(int largeur, int hauteur, int nbMines) {
+        public Plateau(int largeur, int hauteur, int nbMines) {
         if (largeur <= 0 || hauteur <= 0) {
             throw new IllegalArgumentException("Dimensions invalides.");
         }
@@ -97,14 +87,7 @@ public class Plateau {
         return ligne >= 0 && ligne < hauteur && colonne >= 0 && colonne < largeur;
     }
 
-    /**
-     * Revele une case. Retourne true si une mine est touchee.
-     *
-     * @param ligne   ligne de la case
-     * @param colonne colonne de la case
-     * @return true si la case etait minee
-     */
-    public boolean revelerCase(int ligne, int colonne) {
+        public boolean revelerCase(int ligne, int colonne) {
         if (!estDansBornes(ligne, colonne)) {
             throw new IllegalArgumentException("Coordonnees hors bornes.");
         }
@@ -127,10 +110,7 @@ public class Plateau {
         return false;
     }
 
-    /**
-     * Revelation en chaine des cases vides adjacentes.
-     */
-    private void revelerRecursif(int ligne, int colonne) {
+        private void revelerRecursif(int ligne, int colonne) {
         if (!estDansBornes(ligne, colonne)) {
             return;
         }
@@ -165,35 +145,18 @@ public class Plateau {
         }
     }
 
-    /**
-     * Bascule le marqueur de la case (VIDE -> MINE -> SUSPECT -> VIDE).
-     *
-     * @param ligne   ligne de la case
-     * @param colonne colonne de la case
-     */
-    public void basculerMarqueur(int ligne, int colonne) {
+        public void basculerMarqueur(int ligne, int colonne) {
         if (!estDansBornes(ligne, colonne)) {
             throw new IllegalArgumentException("Coordonnees hors bornes.");
         }
         cases[ligne][colonne].changerMarqueur();
     }
 
-    /**
-     * Indique si toutes les cases non minees ont ete revelees.
-     *
-     * @return true si la partie est gagnee
-     */
-    public boolean toutesCasesSuresRevelees() {
+        public boolean toutesCasesSuresRevelees() {
         return nbCasesRevelees == (largeur * hauteur - nbMines);
     }
 
-    /**
-     * Retourne le nombre de cases portant le marqueur MINE (★).
-     * Utilise pour afficher : nbMines - nbMarqueursMine pendant la partie.
-     *
-     * @return nombre de marqueurs ★ poses sur la grille
-     */
-    public int getNbMarqueursMine() {
+        public int getNbMarqueursMine() {
         int total = 0;
         int l;
         int c;
@@ -207,63 +170,30 @@ public class Plateau {
         return total;
     }
 
-    /**
-     * Retourne la largeur de la grille.
-     *
-     * @return largeur
-     */
-    public int getLargeur() {
+        public int getLargeur() {
         return largeur;
     }
 
-    /**
-     * Retourne la hauteur de la grille.
-     *
-     * @return hauteur
-     */
-    public int getHauteur() {
+        public int getHauteur() {
         return hauteur;
     }
 
-    /**
-     * Retourne le nombre total de mines.
-     *
-     * @return nbMines
-     */
-    public int getNbMines() {
+        public int getNbMines() {
         return nbMines;
     }
 
-    /**
-     * Retourne le nombre de cases revelees (mines comprises).
-     *
-     * @return nbCasesRevelees
-     */
-    public int getNbCasesRevelees() {
+        public int getNbCasesRevelees() {
         return nbCasesRevelees;
     }
 
-    /**
-     * Retourne la case aux coordonnees donnees.
-     *
-     * @param ligne   ligne
-     * @param colonne colonne
-     * @return la case
-     */
-    public Case getCase(int ligne, int colonne) {
+        public Case getCase(int ligne, int colonne) {
         if (!estDansBornes(ligne, colonne)) {
             throw new IllegalArgumentException("Coordonnees hors bornes.");
         }
         return cases[ligne][colonne];
     }
 
-    /**
-     * Affiche le plateau en ASCII.
-     *
-     * @param afficherMines true pour debug ou fin de partie
-     * @return representation texte
-     */
-    public String toAscii(boolean afficherMines) {
+        public String toAscii(boolean afficherMines) {
         StringBuilder sb = new StringBuilder();
         int l;
         int c;

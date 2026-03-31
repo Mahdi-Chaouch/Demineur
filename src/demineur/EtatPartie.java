@@ -1,4 +1,4 @@
-package fr.sae.demineur;
+package demineur;
 
 public final class EtatPartie {
     public static final EtatPartie EN_COURS = new EtatPartie("EN_COURS");
