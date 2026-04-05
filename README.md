@@ -1,83 +1,55 @@
-﻿## Démineur – Projet Java/Swing
+# 💣 SAÉ 2.1 - Démineur (Minesweeper) en Java
 
-Ce projet implémente un jeu de **Démineur** en Java avec une interface graphique basée sur **Swing**.
-Le joueur découvre une grille de cases contenant des mines cachées : l’objectif est de révéler toutes les
-cases sûres en s’aidant des nombres affichés, sans déclencher de mine.  
-Le jeu propose une grille paramétrable, un chronomètre, la sauvegarde/chargement de partie et
-l’enregistrement du meilleur temps.
+Ce projet est une réimplémentation complète du jeu de Démineur classique en **Java**, réalisé dans le cadre de la **SAÉ 2.1** (Projet de programmation). 
 
-### Prérequis
+L'objectif du jeu est de révéler l'ensemble des cases non minées d'une grille sans faire exploser une seule mine, à l'aide d'informations numériques indiquant le nombre de cases adjacentes piégées.
 
-- **Java** : JDK 11 ou plus récent recommandé.
-- **Outil de compilation** :
-  - soit la ligne de commande `javac` (fournie avec le JDK),
-  - soit un IDE Java (IntelliJ IDEA, Eclipse, VS Code avec extensions Java, etc.).
+## ✨ Fonctionnalités implémentées
 
-### Organisation du code
+- **Configuration de Partie** : Possibilité de configurer les dimensions de la grille (lignes et colonnes de 4 à 30) ainsi que le nombre de mines.
+- **Marquage et Révélation** :
+  - **Clic Gauche** : Révèle une case (et révèle automatiquement en cascade les cases adjacentes si le danger est nul).
+  - **Clic Droit** : Permet de poser des marqueurs tactiques (★ pour mine certifiée, ? pour soupçon).
+- **Interface "Dark Mode" Moderne** : Un rendu plat, aux bords doux et une typographie claire avec des couleurs de chiffres ultra-lumineuses, s'éloignant du vieux look par défaut de Swing.
+- **Sauvegarde et Reprise** : Possibilité de sauvegarder une partie en cours en cliquant sur « Sauver et Quitter » ou en fermant la fenêtre. La partie peut être reprise lors du redémarrage sans perte de données.
+- **Statistiques en Temps Réel** : Présence d'un chronomètre et d'un compte de mines restantes (mines moins marqueurs) en jeu.
+- **Bilan de fin de Partie** : Visualisation claire du résultat (Victoire ou Défaite). En cas de défaite, révélation de la mine qui a explosé, repérage des mines non-détectées par le joueur, et révélation des fausses suspicions (marqueurs placés à tort).
 
-Le code source est organisé dans un dossier `src/` avec un package unique :
+##  Compilation et Exécution
 
-- `src/fr/sae/demineur/LanceurGraphique.java`
-- `src/fr/sae/demineur/FenetrePrincipale.java`
-- `src/fr/sae/demineur/PanneauMenu.java`
-- `src/fr/sae/demineur/PanneauConfiguration.java`
-- `src/fr/sae/demineur/PanneauJeu.java`
-- `src/fr/sae/demineur/PanneauFin.java`
-- `src/fr/sae/demineur/Partie.java`
-- `src/fr/sae/demineur/Plateau.java`
-- `src/fr/sae/demineur/Case.java`
-- `src/fr/sae/demineur/Marqueur.java`
-- `src/fr/sae/demineur/EtatPartie.java`
-- `src/fr/sae/demineur/Sauvegarde.java`
+Ce projet suit à la lettre les consignes de l'IUT et peut être compilé et lancé de différentes manières.
 
-Toutes les classes partagent la même déclaration de package :
-
-```java
-package fr.sae.demineur;
-```
-
-Le point d’entrée principal de l’application graphique est la classe `LanceurGraphique`.  
-Une classe `LanceurConsole` permet également de lancer une version console si vous le souhaitez.
-
-### Compilation et exécution (ligne de commande)
-
-Depuis la racine du projet :
-
-1. **Compiler** toutes les classes Java dans un dossier de sortie (par exemple `out/`) :
+### Via le Makefile
+Si vous utilisez un système Unix (Linux / macOS) ou un terminal équipé de `make` :
 
 ```bash
-javac -d out src/fr/sae/demineur/*.java
+# Pour compiler l'intégralité du code source
+make
+
+# Pour compiler (si besoin) et lancer directement la version graphique (GUI)
+make run
+
+# Pour nettoyer les fichiers classes générés
+make clean
 ```
 
-2. **Lancer l’interface graphique** :
+### Via les commandes Java natives (si vous êtes sous Windows sans Make)
+Si vous travaillez via Windows PowerShell :
 
 ```bash
-java -cp out fr.sae.demineur.LanceurGraphique
+# Compilation manuelle :
+javac -implicit:none -encoding UTF-8 src/jeu/*.java
+
+# Lancement manuel de l'interface graphique :
+java -cp src/jeu LanceurGraphique
 ```
 
-3. (Optionnel) **Lancer la version console** :
+##  Structure Technique
 
-```bash
-java -cp out fr.sae.demineur.LanceurConsole
-```
+- Aucune librairie tierce n'a été utilisée. Seule l'API `javax.swing` et `java.awt` ont été réquisitionnées, dans le strict contournement des expressions lambdas ou classes anonymes (consignes du projet obligent, tous les EventListeners sont définis classiquement).
+- Le patron *Modèle-Vue-Contrôleur* y est partiellement appliqué pour bien isoler la gestion de la `Partie` (EtatPartie, Plateau, Marqueur) des panneaux d'affichages (`PanneauJeu`, `PanneauConfiguration`, `BoutonCase`).
 
-> Avec un IDE, il suffit en général de marquer `LanceurGraphique` comme classe contenant la méthode `main`
-> et d’exécuter cette configuration de lancement.
+##  Auteurs
 
-### Fonctionnalités principales
-
-- **Interface graphique** en Java Swing.
-- **Chronomètre** affiché pendant la partie et sur l’écran de fin.
-- **Sauvegarde et chargement** d’une partie via un fichier texte (`sauvegarde.txt`).
-- **Meilleur temps** enregistré dans un fichier dédié (`meilleur_score.txt`).
-- **Paramétrage de la partie** (dimensions de la grille, nombre de mines) via un écran de configuration.
-
-### Fichiers générés à l’exécution
-
-Certains fichiers sont créés automatiquement par le jeu et ne sont pas destinés à être versionnés :
-
-- `sauvegarde.txt` : contient l’état d’une partie en cours.
-- `meilleur_score.txt` : contient le meilleur temps enregistré.
-
-Ils peuvent être supprimés sans risque pour réinitialiser la sauvegarde ou le meilleur score.
-
+- **Mahdi CHAOUCH**
+- **Rayan Ishac BELABED** 

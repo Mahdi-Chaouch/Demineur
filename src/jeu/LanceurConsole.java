@@ -1,7 +1,8 @@
-package demineur;
-
 import java.util.Scanner;
 
+/**
+ * Test console simple du modele Demineur.
+ */
 public class LanceurConsole {
     public static void main(String[] args) {
         Partie partie = new Partie(9, 9, 10);
@@ -47,4 +48,3 @@ public class LanceurConsole {
         scanner.close();
     }
 }
-
