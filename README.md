@@ -1,10 +1,10 @@
-# 💣 SAÉ 2.1 - Démineur (Minesweeper) en Java
+#  SAÉ 2.1 - Démineur (Minesweeper) en Java
 
 Ce projet est une réimplémentation complète du jeu de Démineur classique en **Java**, réalisé dans le cadre de la **SAÉ 2.1** (Projet de programmation). 
 
 L'objectif du jeu est de révéler l'ensemble des cases non minées d'une grille sans faire exploser une seule mine, à l'aide d'informations numériques indiquant le nombre de cases adjacentes piégées.
 
-## ✨ Fonctionnalités implémentées
+##  Fonctionnalités implémentées
 
 - **Configuration de Partie** : Possibilité de configurer les dimensions de la grille (lignes et colonnes de 4 à 30) ainsi que le nombre de mines.
 - **Marquage et Révélation** :
